@@ -1,0 +1,38 @@
+
+    !Configuração do Roteador SP
+
+    hostname SP
+
+    ! Configuração da Interface LAN (FastEthernet 0/0)
+
+    interface FastEthernet0/1
+        description Porta LAN de SP
+        ip address 192.168.10.1 255.255.255.0
+        no shutdown
+
+    !Configuração da Interface WAN (Serial 0/0)
+
+    interface Serial0/0
+        description Porta WAN que Liga SP e RJ
+        ip address 10.0.0.1 255.0.0.0
+        clock rate 250000
+        bandwidth 250
+        no shutdown
+
+    !Configuração do Protocolo RIP
+
+    router rip
+        version 2
+        network 192.168.10.0
+        network 10.0.0.0
+
+! Salvar as configurações
+
+write
+
+!Verificação das Configurações
+
+show running-config
+show ip route
+
+!Não se Esqueça de Configurar o GateWay e nem os IPS da maquinas
