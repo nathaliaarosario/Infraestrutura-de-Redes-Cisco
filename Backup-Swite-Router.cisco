@@ -1,0 +1,28 @@
+enable
+    !Versão Cisco IOS
+    show version
+    !Versão do Sistema Operacional
+    show boot 
+    !Conteudo da flash (mini hd que esta dentro do swite ):
+    show flash:/
+    (dois tipos de flash, o hd e a nvram)
+    !Conteudo da NVRAM
+    dir nvram:/
+    ===================================
+    !Começando o Backup do Swite
+    !Memoria RAM para NVRAM
+    copy running-config startup-config 
+    !Memoria RAM para a FLASH
+    copy running-config flash:/
+    show flash:/
+    !Memoria NVRAM para o TFTP
+    Copy startup-config tftp:
+    
+    (2960-lanbasek9-mz.150-2.SE4.bin Sistema operacional, aonde esta instalado)
+    !Memoria flash: para o tftp:
+    Copy flash: tftp:
+    !Memoria RAM para TEXTO
+    show running-config
+    !Sair 
+    end
+
